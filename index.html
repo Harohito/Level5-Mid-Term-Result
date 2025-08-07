@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Neon Pulse Academy - Student Performance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -43,14 +43,14 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1.5rem;
             position: relative;
             z-index: 1;
         }
         
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             position: relative;
             animation: fadeIn 1s ease-out;
         }
@@ -61,14 +61,14 @@
         }
         
         h1 {
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             margin-bottom: 0.5rem;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             position: relative;
             display: inline-block;
         }
@@ -76,54 +76,56 @@
         h1::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
+            width: 80px;
+            height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 3px;
-            box-shadow: 0 0 10px var(--primary);
+            border-radius: 2px;
+            box-shadow: 0 0 8px var(--primary);
         }
         
         .subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(0.9rem, 3vw, 1.3rem);
             color: var(--text-dim);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             font-weight: 400;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
         
         .filters {
             display: flex;
-            gap: 0.8rem;
+            gap: 0.6rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .filter-btn {
             background: transparent;
             color: var(--primary);
             border: 2px solid var(--primary);
-            padding: 0.7rem 1.3rem;
-            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            box-shadow: 0 0 10px rgba(0, 247, 255, 0.1);
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
+            box-shadow: 0 0 8px rgba(0, 247, 255, 0.1);
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
         }
         
         .filter-btn::before {
@@ -144,14 +146,14 @@
         
         .filter-btn:hover {
             background: rgba(0, 247, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0, 247, 255, 0.3);
         }
         
         .filter-btn.active {
             background: var(--primary);
             color: var(--bg-dark);
-            box-shadow: 0 0 20px var(--primary);
+            box-shadow: 0 0 15px var(--primary);
             font-weight: 700;
         }
         
@@ -159,39 +161,43 @@
             background: var(--primary);
             color: var(--bg-dark);
             border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
-            font-size: 0.9rem;
+            box-shadow: 0 0 12px rgba(0, 247, 255, 0.3);
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            white-space: nowrap;
         }
         
         .refresh-btn:hover {
             background: var(--highlight);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 247, 255, 0.5);
+            box-shadow: 0 3px 15px rgba(0, 247, 255, 0.5);
         }
         
         .chart-container {
             background: var(--bg-light);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
             border: 1px solid rgba(0, 247, 255, 0.2);
             position: relative;
             overflow: hidden;
             animation: float 6s ease-in-out infinite;
+            max-width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
         
@@ -217,7 +223,8 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
+            min-width: 700px;
         }
         
         thead {
@@ -229,10 +236,10 @@
         th {
             background: rgba(0, 247, 255, 0.1);
             color: var(--primary);
-            font-size: 1rem;
+            font-size: clamp(0.7rem, 2.5vw, 1rem);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 1.2rem 1rem;
+            letter-spacing: 0.8px;
+            padding: 0.8rem 0.6rem;
             text-align: center;
             font-weight: 600;
             border-bottom: 2px solid var(--primary);
@@ -240,19 +247,20 @@
         }
         
         th:first-child {
-            border-top-left-radius: 10px;
+            border-top-left-radius: 8px;
         }
         
         th:last-child {
-            border-top-right-radius: 10px;
+            border-top-right-radius: 8px;
         }
         
         td {
-            padding: 1rem;
+            padding: 0.8rem 0.6rem;
             text-align: center;
             border-bottom: 1px solid rgba(0, 247, 255, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             position: relative;
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
         }
         
         tr:hover td {
@@ -266,28 +274,28 @@
         .rank {
             font-weight: bold;
             color: var(--highlight);
-            font-size: 1.1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1.1rem);
         }
         
         .rank-1 {
             color: gold;
-            text-shadow: 0 0 10px gold;
+            text-shadow: 0 0 8px gold;
         }
         
         .rank-2 {
             color: silver;
-            text-shadow: 0 0 8px silver;
+            text-shadow: 0 0 6px silver;
         }
         
         .rank-3 {
             color: #cd7f32;
-            text-shadow: 0 0 6px #cd7f32;
+            text-shadow: 0 0 4px #cd7f32;
         }
         
         .name {
             font-weight: 600;
             text-align: left;
-            padding-left: 1.5rem;
+            padding-left: 0.8rem;
         }
         
         .score {
@@ -306,10 +314,16 @@
         .highlight-score {
             font-weight: bold;
             color: var(--highlight) !important;
-            text-shadow: 0 0 8px var(--highlight);
+            text-shadow: 0 0 6px var(--highlight);
             transform: scale(1.1);
             display: inline-block;
             animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         .podium-effect {
@@ -322,7 +336,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             transform: scaleX(0);
             transform-origin: left;
@@ -358,53 +372,48 @@
         
         .glow-effect {
             position: absolute;
-            width: 300px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(0, 247, 255, 0.1) 0%, transparent 70%);
-            filter: blur(30px);
+            filter: blur(25px);
             z-index: -1;
         }
         
         .glow-1 {
             top: 20%;
             left: 10%;
-            background: radial-gradient(circle, rgba(0, 247, 255, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 247, 255, 0.1) 0%, transparent 70%);
         }
         
         .glow-2 {
             bottom: 15%;
             right: 10%;
-            background: radial-gradient(circle, rgba(255, 0, 247, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 0, 247, 0.1) 0%, transparent 70%);
         }
         
-        @media (max-width: 1024px) {
-            .container {
-                padding: 1.5rem;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            th, td {
-                padding: 0.9rem 0.7rem;
-                font-size: 0.9rem;
-            }
-        }
-        
+        /* Mobile-specific optimizations */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+            .container {
+                padding: 1rem;
             }
             
             .dashboard-header {
                 flex-direction: column;
                 align-items: stretch;
+                gap: 0.8rem;
             }
             
             .filters {
-                justify-content: center;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .filters::-webkit-scrollbar {
+                display: none;
             }
             
             .refresh-btn {
@@ -413,30 +422,35 @@
             }
             
             .chart-container {
-                padding: 1rem;
+                padding: 0.8rem;
+                border-radius: 10px;
             }
             
-            th, td {
-                padding: 0.8rem 0.5rem;
-            }
-            
-            .name {
-                padding-left: 0.5rem;
+            table {
+                min-width: 600px;
             }
         }
         
         @media (max-width: 480px) {
-            .filters {
-                gap: 0.5rem;
+            h1::after {
+                width: 60px;
+                bottom: -6px;
             }
             
             .filter-btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
             }
             
             .refresh-btn {
-                padding: 0.7rem 1rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            th, td {
+                padding: 0.6rem 0.4rem;
+            }
+            
+            .name {
+                padding-left: 0.5rem;
             }
         }
     </style>
@@ -448,7 +462,7 @@
     
     <div class="container">
         <header>
-            <h1>Level 5 Mid-Term Result</h1>
+            <h1>NEON PULSE ACADEMY</h1>
             <p class="subtitle" id="rankingTitle">Overall Performance Ranking</p>
         </header>
         
@@ -583,7 +597,7 @@
                     <td class="score ${highlightSubject === 'writing' ? 'highlight-score' : ''}">${student.scores.writing}</td>
                     <td class="score ${highlightSubject === 'reading' ? 'highlight-score' : ''}">${student.scores.reading}</td>
                     <td class="score ${highlightSubject === 'listening' ? 'highlight-score' : ''}">${student.scores.listening}</td>
-                    <td class="total-score">${student.total.toFixed(2)}</td>
+                    <td class="total-score">${student.total}</td>
                     <td class="average">${student.average.toFixed(1)}</td>
                 `;
                 
@@ -594,14 +608,14 @@
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = window.innerWidth < 768 ? 30 : 50;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // Random size between 1px and 4px
-                const size = Math.random() * 3 + 1;
+                // Random size between 1px and 3px on mobile
+                const size = window.innerWidth < 768 ? Math.random() * 2 + 1 : Math.random() * 3 + 1;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
